@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>問卷自動跳轉中...</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding-top: 100px; }
+  </style>
+</head>
+<body>
+  <h2>🔄 問卷加載中，請稍候...</h2>
+  <p>正在為你導入個人識別資訊中...</p>
+
+  <script>
+    async function main() {
+      await liff.init({ liffId: "2007687489-lpd3N09q" });
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      } else {
+        const profile = await liff.getProfile();
+        const uid = profile.userId;
+        const surveyUrl = `https://www.surveycake.com/s/Vwkkn?uid=${uid}`;
+        window.location.href = surveyUrl;
+      }
+    }
+    main();
+  </script>
+</body>
+</html>
